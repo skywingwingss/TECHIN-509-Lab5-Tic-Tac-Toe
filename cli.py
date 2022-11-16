@@ -9,9 +9,20 @@ from Gameandplayer import AI
 
 
 if __name__ == '__main__':
-    playerX=Human("X")
-    playerO=AI("O")
 
+
+
+    print("Welcome! Please select player number.\nEnter 1 to play with an AI.\nEnter 2 to play with a human.")
+    playerNum=int(input("Enter:"))
+    if playerNum==1:
+        playerX = Human("X")
+        playerO = AI("O")
+    elif playerNum==2:
+        playerX = Human("X")
+        playerO=Human("O")
+    else:
+        print("Error input! Exit...")
+        exit(0)
     Game=Tictactoe(playerX,playerO)
     Game.run()
 

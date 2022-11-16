@@ -28,12 +28,18 @@ class Tictactoe():
                 continue
             self.winner=logic.check_winner(self.board)
             self.other_player()
+            self.turn+=1
+            if self.is_draw():
+                break
         self.end()
 
-
+    def is_draw(self):
+        if self.turn==9:
+            return True
+        else:
+            return False
 
     def end(self):
-
         print(self.board)
         if self.winner==None:
             print("Draw!")

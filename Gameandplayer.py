@@ -1,6 +1,8 @@
 import logic
 import Board
 import random
+import pandas as pd
+import os
 
 class Tictactoe():
     def __init__(self,playerX,playerO):
@@ -83,4 +85,48 @@ class AI():
 
     def get_chess(self):
         return self.chess
+
+class Database():
+    def __init__(self):
+        self.datapath="./data/database.csv"
+        self.check_localfile()
+        self.df=self.load_data()
+
+
+    def check_localfile(self):
+        #check existing local file and create one if failed to find.
+        if not os.path.exists("./data"):
+            os.mkdir("./data")
+        if not os.path.exists(self.datapath):
+            data={"player":["a"],
+                  "win":[1],
+                  "lose":[0],
+                  "draw":[0],
+                  "score":[1]}
+            df=pd.DataFrame(data)
+            df.to_csv(self.datapath,index=None)
+
+    def load_data(self):
+        df=pd.read_csv(self.datapath)
+        return df
+
+    def write_data(self):
+        self.df.to_csv(self.datapath)
+
+    def add_record(self,player,result):
+        if not( player in self.df["player"]):
+            self.df.loc[len(self.df)]=[player,0,0,0,0]
+        p=self.df.loc[player]
+        #self.df.loc[len(self.df)]=[player1,player2,winner]
+
+    def sort_record(self):
+        self.df
+
+
+
+if __name__ == '__main__':
+    database=Database()
+    database.add_record("a","win")
+
+
 

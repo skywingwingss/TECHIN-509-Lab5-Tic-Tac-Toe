@@ -13,12 +13,14 @@ if __name__ == '__main__':
 
     print("Welcome! Please select player number.\nEnter 1 to play with an AI.\nEnter 2 to play with a human.")
     playerNum=int(input("Enter:"))
+
     if playerNum==1:
         print("Please Enter player's name.")
         name=input("Enter:")
         print("Welcome! Player \""+name+"\".")
         playerX = Human("X",name)
         playerO = AI("O")
+
     elif playerNum==2:
         print("Please Enter playerX's name.")
         name=input("Enter:")

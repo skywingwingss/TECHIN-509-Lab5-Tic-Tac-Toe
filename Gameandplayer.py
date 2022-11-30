@@ -132,6 +132,7 @@ class Database():
         self.df.to_csv(self.datapath)
 
     def add_record(self,player,result):
+        #update player record in cache
         if not( player in self.df.index):
             self.df.loc[player]=[0,0,0,0]
         self.df.loc[player][result]+=1#update data
@@ -144,6 +145,7 @@ class Database():
 
         #self.df.loc[len(self.df)]=[player1,player2,winner]
     def record_game(self,player1,player2,winner):
+        #record a game and update local database
         if player1==winner:
             self.add_record(player1,"win")
             self.add_record(player2,"lose")
@@ -160,6 +162,7 @@ class Database():
         self.df.sort_values(by=["score"],ascending=False,inplace=True)
 
     def get_globalrank(self):
+        #return all the records with rank
         output_df=self.df
         output_df.reset_index(inplace=True)
         rank=[i+1 for i in range(len(self.df))]
@@ -175,6 +178,7 @@ class Database():
         self.df.drop(index=player,inplace=True)
 
     def clear_database(self):
+        #reset database
         data = {"player": ["test"],
                 "win": [1],
                 "lose": [0],
